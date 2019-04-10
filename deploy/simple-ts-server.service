@@ -1,0 +1,15 @@
+[Unit]
+Description=Simple TypeScript HTTPS server for sharing your front-end
+After=network.target
+[Service]
+PIDFile=/tmp/simple-ts-server.pid
+Type=simple
+Restart=always
+RestartSec=1
+User=__USER__
+WorkingDirectory=__HOME__/
+ExecStartPre=/usr/bin/npm --prefix=__HOME__ run copylog
+ExecStart=/usr/bin/npm --prefix=__HOME__ run start
+KillSignal=SIGQUIT
+[Install]
+WantedBy=multi-user.target
